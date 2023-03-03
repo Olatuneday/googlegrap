@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Clone</title>
+</head>
+<body>
+    <style>
+        html{overflow: hidden auto;}
+        html, body {
+            min-width: 400px;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #fff;
+        }
+        body, input, button {
+            font-size: 14px;
+            font-family: arial,sans-serif;
+            color: #202124;
+        }
+        .row-div {
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+        .row-grow {
+            flex-grow: 1;
+        }
+        .main-div {
+            margin: 0;padding: 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        .d-none {display: none!important;}
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: auto;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            top: 105%;
+        }
+        .tooltip .tooltiptext2 {
+            display: block;
+            visibility: hidden;
+            width: auto;
+            line-height: 25px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 0 5px;
+            position: absolute;
+            z-index: 1;
+            top: 175%;
+        }
+        .tooltip .tooltiptext2::after {
+            content: " ";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+        }
+        .tooltip .centered {
+            left: -70%;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .tooltip .right {
+            right: 5%;
+            text-align: start;
+        }
+        .tooltip:hover .tooltiptext, .tooltip:hover .tooltiptext2 {
+            visibility: visible;
+        }
+        .bottom-div {
+            background-color: #f2f2f2;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+        .btm-text-fg {
+            color: #70757a;
+        }
+        .nig-div {
+            padding: 15px 30px;
+            border-bottom: 1px solid #dadce0;
+            font-size: 15px;
+        }
+        .nig-div>span {
+            width: 100%; padding: 10px;
+        }
+        .bottom-nav {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .bottom-nav a {
+            margin: 0;
+            display: block;
+            padding: 15px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .bottom-nav a:not(.center-div>a):hover {
+            text-decoration: underline;
+        }
+        .left-right-divs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .left-div {
+            justify-content: flex-start;
+            min-width: 30%;
+            order: 1;
+        }
+        .center-div {
+            order: 2;
+        }
+        .right-div {
+            justify-content: flex-end;
+            min-width: 30%;
+            order: 3;
+        }
+        @media only screen and (max-width: 1200px){
+            .center-div {
+                order: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            .left-div {
+                width: 100%;
+                justify-content: center;
+            }
+            .right-div {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <div class="main-div">
+        <table style="width: 100%; height: 100%; border-collapse: collapse;">
+            <tr>
+                <td>
+                    <style>
+                        tr, td{
+                            width: 100%;
+                            padding: 0;
+                            max-height: 48px;
+                        }
+                        .nav-bar{
+                            margin: 0;
+                            display: flex; flex-direction: row; justify-content: flex-end; align-content: center; align-items: center; flex-wrap:nowrap;
+                            border-color: rgb(138, 138, 138);
+                        }
+                        .nav-bar a {
+                            margin: 0 5px; padding: 5px;
+                            color: #000;
+                            text-decoration: none;
+                        }
+                        .nav-bar a.icon {
+                            /* padding: 2px; */
+                            border-radius: 50% 50%;
+                        }
+                        .nav-bar a.icon>img {
+                            border-radius: 50% 50%;
+                        }
+                        .nav-bar a.text:hover {
+                            text-decoration: underline;
+                        }
+                        .nav-bar a.icon:hover {
+                            text-decoration:none;
+                            background-color: rgb(238, 238, 238);
+                        }
+                    </style>
+                    <div class="nav-bar">
+                        <a class="text" href="#"> Gmail </a> 
+                        <a class="text" href="#"> Images </a> 
+                        <a class="icon tooltip" href="#" role="button" tabindex="0">
+                            <img src="./menu.png" width="28" height="28" alt="" />
+                            <span class="tooltiptext centered">Google Apps</span>
+                        </a> 
+                        <a class="icon tooltip" href="#" role="button" tabindex="0">
+                            <img src="./foto.png" width="28" height="28" alt="" />
+                            <span class="tooltiptext right">Google Account Account Name account@email.com</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <style>
+                        .google-icon{
+                            width: 100%;
+                            display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center; flex-wrap:nowrap;
+                        }
+                    </style>
+                    <div class="google-icon">
+                        <img src="./googlelogo_color_272x92dp.png" alt="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <style>
+                        .form-border {
+                            border: 1px solid rgb(238, 238, 238);
+                        }
+                        .box-shadow {
+                            box-shadow: 0 1px 6px rgba(32,33,36,.28);
+                        }
+                        .search-div{
+                            width: 100%;
+                            display: flex; flex-direction: column; justify-content: center; 
+                            align-content: center; align-items: center; flex-wrap:nowrap;
+                        }    
+                        .search-form{
+                            padding: 1px 5px;
+                            display: flex; flex-direction: column; justify-content:space-between; 
+                            align-content: center; align-items: center; flex-wrap:nowrap;
+                            border-radius: 24px; 
+                        }
+                        .search-field-div{
+                            width: 535px;
+                            height: 44px;
+                            padding: 1px 5px;
+                            display: flex; flex-direction: row; justify-content:space-between; 
+                            align-content: center; align-items: center; flex-wrap:nowrap;
+                            border-radius: 44px; 
+                        }
+                        .search-field-div:hover:not(:focus-within) {
+                            box-shadow: 0 1px 6px rgba(32,33,36,.28);
+                        }
+                        input[type="search"]:focus {
+                            outline: none;
+                        }
+                        .search-field {
+                            margin: 0 10px;
+                            flex: 100%;
+                            height: 34px;
+                            border-radius: 6px;
+                            border: none;
+                        }
+                        .mic-cam-div {
+                            display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center; flex-wrap:nowrap;
+                        }
+                        .search-list {
+                            display: flex; flex-direction: column; justify-content: center; flex-wrap:nowrap;
+                            margin: -1px 10px 0 10px;
+                            padding: 5px 0;
+                            width: calc(100% - 20px);
+                            max-height:300px;
+                            border-top: 1px solid rgb(238, 238, 238); 
+                        }
+                        .search-list>a {
+                            margin: 0;
+                            padding: 5px;
+                            text-decoration: none;
+                        }
+                        .search-list>a:hover {
+                            background-color: rgb(248, 248, 248); 
+                        }
+                        .search-btns-div{
+                            margin: 20px 10px;
+                            padding: 5px;
+                            width: 100%;
+                            display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center; flex-wrap:nowrap;
+                        }
+                        .search-btns-div>button {
+                            margin: 5px;
+                            padding: 10px;
+                            border: 1px solid transparent;
+                            border-radius: 3px;
+                            background-color: rgb(248, 248, 248);
+                            box-shadow: none;
+                        }
+                        .search-btns-div>button:hover {
+                            border: 1px solid rgb(200, 200, 200);
+                            box-shadow: 0px 0.8px rgb(190, 190, 190);
+                        }
+                        .search-btns-div>button:active {
+                            border: 1px solid rgb(100, 100, 255);
+                            box-shadow: none;
+                        }
+                        #place-holder {
+                            padding: 0;
+                            height: 0;
+                        }
+                    </style>
+                    <div class="search-div">
+                        <form onsubmit="return setAction(this);" autocomplete="off" method="GET" role="search" name="search_form" class="search-form">
+                            <div class="search-field-div form-border">
+                                <img src="./search.png" width="25" alt="" style="margin-left:10px;">
+                                <input type="search" name="search" id="search" class="search-field" />
+                                <div class="mic-cam-div">
+                                    <style data-iml="1677598618963">
+                                        .mic-icon-div{
+                                            flex:1 0 auto;display:flex;cursor:pointer;align-items:center;border:0;background:transparent;
+                                            outline:none;padding:0 8px;width:24px;line-height:44px;
+                                        }
+                                        .mic-icon-svg{
+                                            height:24px;width:24px;vertical-align:middle;
+                                        }
+                                        .minidiv .mic-icon-div{
+                                            line-height:32px;
+                                        }.minidiv .mic-icon-svg{
+                                            width:20px;height:20px;
+                                        }
+                                    </style>
+                                    <div jscontroller="unV4T" class="mic-icon-div tooltip" aria-label="Search by voice" role="button" tabindex="0" jsaction="h5M12e;rcuQ6b:npT2md" data-ved="0ahUKEwictaeutrj9AhU_RaQEHZKKDSIQvs8DCAY">
+                                        <svg class="mic-icon-svg" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#4285f4" d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z"></path>
+                                            <path fill="#34a853" d="m11 18.08h2v3.92h-2z"></path>
+                                            <path fill="#fbbc05" d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z"></path>
+                                            <path fill="#ea4335" d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z"></path>
+                                        </svg>
+                                        <span class="tooltiptext2 centered">Search by Voice</span>
+                                    </div>
+                                    <style data-iml="1677594467432">
+                                        .cam-icon-div{
+                                            flex:1 0 auto;display:flex;cursor:pointer;align-items:center;
+                                            border:0;background:transparent;outline:none;padding:0 8px;
+                                            width:24px;line-height:44px;
+                                        }
+                                        .cam-icon-svg{
+                                            height:24px;width:24px;vertical-align:middle;
+                                        }
+                                        .minidiv .cam-icon-div{
+                                            line-height:32px;
+                                        }.minidiv .cam-icon-svg{
+                                            width:20px;height:20px;
+                                        }
+                                    </style>
+                                    <div jscontroller="lpsUAf" jsname="R5mgy" class="cam-icon-div tooltip" data-convert-transparent-images="false" data-downscaling-enabled="true" data-downscaling-max-longest-edge-pixels="1000" data-file-format-conversion-enabled="false" data-image-processor-enabled="true" data-is-images-mode="false" data-preferred-mime-type="" data-propagated-experiment-ids="4961371," aria-label="Search by image" role="button" tabindex="0" jsaction="rcuQ6b:npT2md;h5M12e" data-ved="0ahUKEwictaeutrj9AhU_RaQEHZKKDSIQhqEICAc">
+                                        <svg class="cam-icon-svg" focusable="false" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+                                            <rect fill="none" height="192" width="192"></rect>
+                                            <g><circle fill="#4285f4" cx="96" cy="104.15" r="28"></circle>
+                                                <path fill="#ea4335" d="M160,72v40.15V136c0,1.69-0.34,3.29-0.82,4.82v0v0c-1.57,4.92-5.43,8.78-10.35,10.35h0v0 c-1.53,0.49-3.13,0.82-4.82,0.82H66l16,16h50h12c4.42,0,8.63-0.9,12.46-2.51c3.83-1.62,7.28-3.96,10.17-6.86 c1.45-1.45,2.76-3.03,3.91-4.74c2.3-3.4,3.96-7.28,4.81-11.44c0.43-2.08,0.65-4.24,0.65-6.45v-12V96.15V84l-6-19l-10.82,2.18 C159.66,68.71,160,70.31,160,72z"></path>
+                                                <path fill="#4285f4" d="M32,72c0-1.69,0.34-3.29,0.82-4.82c1.57-4.92,5.43-8.78,10.35-10.35C44.71,56.34,46.31,56,48,56 h96c1.69,0,3.29,0.34,4.82,0.82c0,0,0,0,0,0L149,45l-17-5l-16-16h-13.44H96h-6.56H76L60,40H48c-17.67,0-32,14.33-32,32v12v20l16,16 V72z"></path>
+                                                <path fill="#34a853" d="M144,40h-12l16.83,16.83c1.23,0.39,2.39,0.93,3.47,1.59c2.16,1.32,3.97,3.13,5.29,5.29 c0.66,1.08,1.2,2.24,1.59,3.47v0L176,84V72C176,54.33,161.67,40,144,40z"></path>
+                                                <path fill="#fbbc05" d="M48,168h39.89l-16-16H48c-8.82,0-16-7.18-16-16v-23.89l-16-16V136C16,153.67,30.33,168,48,168z"></path>                                            
+                                            </g>
+                                        </svg>
+                                        <span class="tooltiptext2 centered">Search by Image</span>
+                                    </div>                            
+                                </div>
+                            </div>
+                            <div class="search-list d-none">
+                                <a href=""><img src="./clock.png" width="15" style="margin: 0 10px 0 5px;" alt="" /> dflkjgdfgdfk fgkdfljgdfk hgjh jukjg lhk klj kiuk </a>
+                                <a href=""><img src="./clock.png" width="15" style="margin: 0 10px 0 5px;" alt="" /> dflkjgdfgdfk fgkdfljgdfkjhgh gikg tdrdfgm lk</a>
+                                <a href=""><img src="./clock.png" width="15" style="margin: 0 10px 0 5px;" alt="" /> dflkjgdfgdfk fgkdfljgdfkgfuy uih</a>
+                                <a href=""><img src="./clock.png" width="15" style="margin: 0 10px 0 5px;" alt="" /> dflkjgdfgdfk fgkdfljgdfk</a>
+                                <a href=""><img src="./clock.png" width="15" style="margin: 0 10px 0 5px;" alt="" /> dflkjgdfgdfk fgkdfljgdfk khikgj kifyfkgkhj khi</a>
+                            </div>
+                            <div class="search-btns-div">
+                                <button type="submit" onclick="return search();">Google Search</button>
+                                <button type="button" onclick="return feelLucky();">I'm Feeling Lucky</button>
+                            </div>
+                        </form>
+                        <div id="place-holder"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <style>
+                        .google-langs-div{
+                            margin: 10px 10px;
+                            padding: 10px;
+                            width: 100%;
+                            display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center; flex-wrap:nowrap;
+                        }
+                        .google-langs-div span,.google-langs-div a{
+                            margin: 2.5px;
+                            padding: 2.5px;
+                        }
+                        .google-langs-div>a{
+                            text-decoration: none;
+                        }
+                        .google-langs-div>a:hover{
+                            text-decoration: underline;
+                        }
+                    </style>
+                    <div class="google-langs-div">
+                        <span>Google offered in: </span> <a href="">Hausa</a> <a href="">Igbo</a> <a href="">Èdè Yorùbá</a> <a href="">Nigerian Pidgin</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="bottom-div btm-text-fg">
+            <div class="nig-div">
+                <span class="">Nigeria</span>
+            </div>
+            <div class="bottom-nav">
+                <div class="left-right-divs left-div">
+                    <a href="" class="btm-text-fg">About</a> 
+                    <a href="" class="btm-text-fg">Advertising</a> 
+                    <a href="" class="btm-text-fg">Business</a>
+                    <a href="" class="btm-text-fg">How Search works</a>
+                </div>
+                <div class="left-right-divs center-div">
+                    <a href="" class="btm-text-fg">
+                        <img src="./green_leaf.png" style="width:11px; margin-right: 6px" alt=""> 
+                        <span>Carbon neutral since 2007</span>
+                    </a>
+                </div>
+                <div class="left-right-divs right-div">
+                    <a href="" class="btm-text-fg">Privacy</a>
+                    <a href="" class="btm-text-fg">Terms</a>
+                    <a href="" class="btm-text-fg">Settings</a>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <script>
+        // create .floatable style
+        const floatableStyle = document.createElement("style");
+        floatableStyle.type = "text/css";
+        floatableStyle.innerHTML = ".floatable { position: absolute;background-color: white; top: 0px; };";
+        document.getElementsByTagName("head")[0].appendChild(floatableStyle);
+
+        function setAction(form){
+            alert('searching search.html');
+            return false;
+        }
+        function search() {
+            alert('searching search.html');
+            return false
+        }
+        function feelLucky() {
+            alert("I'm just feeling lucky!");
+            return false                
+        }
+        document.getElementById("search").onfocus = (evt)=>{
+            document.querySelector(".search-field-div").classList.remove("form-border");
+            document.querySelector("form.search-form").classList.add("form-border","box-shadow");
+            document.querySelector(".search-list").classList.remove("d-none");
+            // make floatable
+
+            let xh = document.querySelector(".search-list").clientHeight;
+            document.getElementById("place-holder").style.height = `${xh}px`;
+            document.querySelector("form.search-form").classList.add("floatable");
+            let st = document.querySelector(".search-div").getBoundingClientRect().top;
+            let fy = window.scrollY + st;
+            floatableStyle.innerHTML = `.floatable { position: absolute;background-color: white; top: ${fy}px; };`;
+        };
+        document.getElementById("search").addEventListener( "focusout", (evt)=>{
+            document.querySelector(".search-field-div").classList.add("form-border");
+            document.querySelector("form.search-form").classList.remove("form-border","box-shadow");
+            document.querySelector(".search-list").classList.add("d-none");
+            // unmake floatable
+            document.querySelector("#place-holder").style.height = "0px";
+            document.querySelector("form.search-form").classList.remove("floatable");
+        });
+    </script>
+</body>
+</html>
